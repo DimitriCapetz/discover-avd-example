@@ -23,9 +23,10 @@ daemon_terminattr:
     - apiserver.arista.io:443
   cvauth:
     method: "token-secure"
-    token_file: "/tmp/token"
+    token_file: "/mnt/flash/cv-onboarding-token"
   ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
   smashexcludes: "ale,flexCounter,hardware,kni,pulse,strata"
+  cvvrf: management
   disable_aaa: true
 
 # DNS servers.
@@ -36,6 +37,9 @@ dns_domain: home.dime-a-tron.com
 
 # NTP Servers
 ntp:
+  local_interface:
+    name: Management1
+    vrf: management
   servers:
   - name: 0.pool.ntp.org
     iburst: true
@@ -50,6 +54,11 @@ fabric_ip_addressing:
 aaa_authorization:
   exec:
     default: local
+
+# Default Source Interfaces for Control-Plane Traffic
+source_interfaces:
+  domain_lookup:
+    mgmt_interface: true
 
 # cEOS-lab MTU Overrid
 p2p_uplinks_mtu: 1500

@@ -134,6 +134,10 @@ management_api_http:
   enable_vrfs:
   - name: management
   enable_https: true
+ip_domain_lookup:
+  source_interfaces:
+  - name: Management1
+    vrf: management
 ethernet_interfaces:
 - name: Ethernet1/1
   peer: DC3-LEAF1
