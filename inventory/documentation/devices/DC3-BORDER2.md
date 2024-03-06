@@ -286,8 +286,6 @@ vlan internal order ascending range 1006 1199
 | 201 | PUBLIC_Services_201 | - |
 | 4093 | LEAF_PEER_L3 | LEAF_PEER_L3 |
 | 4094 | MLAG_PEER | MLAG |
-| 8000 | MLAG_iBGP_CORP | LEAF_PEER_L3 |
-| 8001 | MLAG_iBGP_PUBLIC | LEAF_PEER_L3 |
 
 ### VLANs Device Configuration
 
@@ -306,14 +304,6 @@ vlan 4093
 vlan 4094
    name MLAG_PEER
    trunk group MLAG
-!
-vlan 8000
-   name MLAG_iBGP_CORP
-   trunk group LEAF_PEER_L3
-!
-vlan 8001
-   name MLAG_iBGP_PUBLIC
-   trunk group LEAF_PEER_L3
 ```
 
 ## Interfaces
@@ -433,8 +423,6 @@ interface Loopback1
 | Vlan201 | PUBLIC_Services_201 | PUBLIC | - | False |
 | Vlan4093 | MLAG_PEER_L3_PEERING | default | 1500 | False |
 | Vlan4094 | MLAG_PEER | default | 1500 | False |
-| Vlan8000 | MLAG_PEER_L3_iBGP: vrf CORP | CORP | 1500 | False |
-| Vlan8001 | MLAG_PEER_L3_iBGP: vrf PUBLIC | PUBLIC | 1500 | False |
 
 ##### IPv4
 
@@ -444,8 +432,6 @@ interface Loopback1
 | Vlan201 |  PUBLIC  |  -  |  10.201.201.1/24  |  -  |  -  |  -  |  -  |
 | Vlan4093 |  default  |  10.3.254.21/31  |  -  |  -  |  -  |  -  |  -  |
 | Vlan4094 |  default  |  10.3.255.21/31  |  -  |  -  |  -  |  -  |  -  |
-| Vlan8000 |  CORP  |  10.3.254.21/31  |  -  |  -  |  -  |  -  |  -  |
-| Vlan8001 |  PUBLIC  |  10.3.254.21/31  |  -  |  -  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
@@ -475,20 +461,6 @@ interface Vlan4094
    mtu 1500
    no autostate
    ip address 10.3.255.21/31
-!
-interface Vlan8000
-   description MLAG_PEER_L3_iBGP: vrf CORP
-   no shutdown
-   mtu 1500
-   vrf CORP
-   ip address 10.3.254.21/31
-!
-interface Vlan8001
-   description MLAG_PEER_L3_iBGP: vrf PUBLIC
-   no shutdown
-   mtu 1500
-   vrf PUBLIC
-   ip address 10.3.254.21/31
 ```
 
 ### VXLAN Interface
@@ -654,8 +626,6 @@ ip route vrf management 0.0.0.0/0 10.99.99.1
 | 10.3.100.1 | 65300 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - |
 | 10.3.100.2 | 65300 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - |
 | 10.3.254.20 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | default | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - |
-| 10.3.254.20 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | CORP | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - |
-| 10.3.254.20 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | PUBLIC | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -742,7 +712,6 @@ router bgp 65316
       route-target import evpn 5001:5001
       route-target export evpn 5001:5001
       router-id 10.3.101.12
-      neighbor 10.3.254.20 peer group MLAG-IPv4-UNDERLAY-PEER
       redistribute connected
    !
    vrf PUBLIC
@@ -750,7 +719,6 @@ router bgp 65316
       route-target import evpn 5002:5002
       route-target export evpn 5002:5002
       router-id 10.3.101.12
-      neighbor 10.3.254.20 peer group MLAG-IPv4-UNDERLAY-PEER
       redistribute connected
 ```
 

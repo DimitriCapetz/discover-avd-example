@@ -33,9 +33,9 @@ all:
                           ansible_host: 10.99.99.219
                         DC3-BORDER2:
                           ansible_host: 10.99.99.220
-            NETWORK_SERVICES:
-              children:
-                DC3_LEAFS:
-            CONNECTED_ENDPOINTS:
-              children:
-                DC3_LEAFS:
+    NETWORK_SERVICES:
+      children:
+        DC3_LEAFS:
+    CONNECTED_ENDPOINTS:
+      children:
+        DC3_LEAFS:

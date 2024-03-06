@@ -5,6 +5,7 @@ tenants:
 #############################################
   - name: CORP
     mac_vrf_vni_base: 10000 
+    enable_mlag_ibgp_peering_vrfs: false
     vrfs: 
       - name: CORP
         vrf_vni: 5001
@@ -18,6 +19,7 @@ tenants:
 #################################
   - name: PUBLIC
     mac_vrf_vni_base: 10000 
+    enable_mlag_ibgp_peering_vrfs: false
     vrfs: 
       - name: PUBLIC
         vrf_vni: 5002

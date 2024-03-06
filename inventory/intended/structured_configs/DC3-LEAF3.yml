@@ -86,9 +86,6 @@ router_bgp:
         - 5001:5001
     redistribute_routes:
     - source_protocol: connected
-    neighbors:
-    - ip_address: 10.3.254.29
-      peer_group: MLAG-IPv4-UNDERLAY-PEER
   - name: PUBLIC
     router_id: 10.3.101.15
     rd: 10.3.101.15:5002
@@ -103,9 +100,6 @@ router_bgp:
         - 5002:5002
     redistribute_routes:
     - source_protocol: connected
-    neighbors:
-    - ip_address: 10.3.254.29
-      peer_group: MLAG-IPv4-UNDERLAY-PEER
   vlans:
   - id: 101
     tenant: CORP
@@ -183,18 +177,8 @@ vlans:
 - id: 101
   name: CORP_Services_101
   tenant: CORP
-- id: 8000
-  name: MLAG_iBGP_CORP
-  trunk_groups:
-  - LEAF_PEER_L3
-  tenant: CORP
 - id: 201
   name: PUBLIC_Services_201
-  tenant: PUBLIC
-- id: 8001
-  name: MLAG_iBGP_PUBLIC
-  trunk_groups:
-  - LEAF_PEER_L3
   tenant: PUBLIC
 vlan_interfaces:
 - name: Vlan4093
@@ -214,28 +198,12 @@ vlan_interfaces:
   shutdown: false
   ip_address_virtual: 10.101.101.1/24
   vrf: CORP
-- name: Vlan8000
-  tenant: CORP
-  type: underlay_peering
-  shutdown: false
-  description: 'MLAG_PEER_L3_iBGP: vrf CORP'
-  vrf: CORP
-  mtu: 1500
-  ip_address: 10.3.254.28/31
 - name: Vlan201
   tenant: PUBLIC
   description: PUBLIC_Services_201
   shutdown: false
   ip_address_virtual: 10.201.201.1/24
   vrf: PUBLIC
-- name: Vlan8001
-  tenant: PUBLIC
-  type: underlay_peering
-  shutdown: false
-  description: 'MLAG_PEER_L3_iBGP: vrf PUBLIC'
-  vrf: PUBLIC
-  mtu: 1500
-  ip_address: 10.3.254.28/31
 port_channel_interfaces:
 - name: Port-Channel551
   description: MLAG_PEER_DC3-LEAF4_Po551
