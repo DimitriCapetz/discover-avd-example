@@ -4,34 +4,38 @@ all:
       hosts:
         CVaaS:
           ansible_host: www.cv-prod-na-northeast1-b.arista.io
-    DC3:
+    Tenant:
       children:
-        DC3_SPINES:
-          hosts:
-            DC3-SPINE1:
-              ansible_host: 10.99.99.213
-            DC3-SPINE2:
-              ansible_host: 10.99.99.214
-        DC3_LEAFS:
-          hosts:
-            DC3-LEAF1:
-              ansible_host: 10.99.99.215
-            DC3-LEAF2:
-              ansible_host: 10.99.99.216
-            DC3-LEAF3:
-              ansible_host: 10.99.99.217
-            DC3-LEAF4:
-              ansible_host: 10.99.99.218
+        dcapetz:
           children:
-            DC3_GATEWAYS:
-              hosts:
-                DC3-BORDER1:
-                  ansible_host: 10.99.99.219
-                DC3-BORDER2:
-                  ansible_host: 10.99.99.220
-    NETWORK_SERVICES:
-      children:
-        DC3_LEAFS:
-    CONNECTED_ENDPOINTS:
-      children:
-        DC3_LEAFS:
+            DC3:
+              children:
+                DC3_SPINES:
+                  hosts:
+                    DC3-SPINE1:
+                      ansible_host: 10.99.99.213
+                    DC3-SPINE2:
+                      ansible_host: 10.99.99.214
+                DC3_LEAFS:
+                  hosts:
+                    DC3-LEAF1:
+                      ansible_host: 10.99.99.215
+                    DC3-LEAF2:
+                      ansible_host: 10.99.99.216
+                    DC3-LEAF3:
+                      ansible_host: 10.99.99.217
+                    DC3-LEAF4:
+                      ansible_host: 10.99.99.218
+                  children:
+                    DC3_GATEWAYS:
+                      hosts:
+                        DC3-BORDER1:
+                          ansible_host: 10.99.99.219
+                        DC3-BORDER2:
+                          ansible_host: 10.99.99.220
+            NETWORK_SERVICES:
+              children:
+                DC3_LEAFS:
+            CONNECTED_ENDPOINTS:
+              children:
+                DC3_LEAFS:
