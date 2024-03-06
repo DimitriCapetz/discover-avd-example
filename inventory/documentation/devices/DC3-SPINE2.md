@@ -113,13 +113,13 @@ clock timezone CST
 
 | Server | VRF | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
 | ------ | --- | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
-| 0.pool.ntp.org | management | - | - | - | - | - | - | - | - |
+| 0.pool.ntp.org | management | - | - | True | - | - | - | - | - |
 
 #### NTP Device Configuration
 
 ```eos
 !
-ntp server vrf management 0.pool.ntp.org
+ntp server vrf management 0.pool.ntp.org iburst
 ```
 
 ### Management API HTTP

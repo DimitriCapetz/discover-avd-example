@@ -10,7 +10,7 @@ local_users:
     sha512_password: "$6$Nck9evzfm5e9C0Vg$bZ/XSXJ/.ZqJ6NQkPXV3s48IdFB7QS5vzSOYTbmwtenuUKQcFlWgP0lE.uWPPGVMJVA/2Yo8eiRax5mxh7Q0y1"
 
 # Timezone
-custom_structured_configuration_clock:
+clock:
   timezone: CST
 
 # Management parameters
@@ -18,7 +18,7 @@ mgmt_interface_vrf: management
 mgmt_gateway: 10.99.99.1
 
 # Streaming agent configuration
-custom_structured_configuration_daemon_terminattr:
+daemon_terminattr:
   cvaddrs:
     - apiserver.arista.io:443
   cvauth:
@@ -32,12 +32,13 @@ custom_structured_configuration_daemon_terminattr:
 name_servers:
   - 1.1.1.1
 
-custom_structured_configuration_dns_domain: home.dime-a-tron.com
+dns_domain: home.dime-a-tron.com
 
 # NTP Servers
-custom_structured_configuration_ntp:
+ntp:
   servers:
   - name: 0.pool.ntp.org
+    iburst: true
     vrf: management
 
 # Reuse same IP for mlag L2 and L3 peering
@@ -46,7 +47,7 @@ fabric_ip_addressing:
     algorithm: first_id
 
 #aaa authorization exec
-custom_structured_configuration_aaa_authorization:
+aaa_authorization:
   exec:
     default: local
 
