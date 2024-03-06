@@ -1,4 +1,6 @@
 {
     "name": "AVD Universal",
-    "image": "ghcr.io/aristanetworks/ansible-avd/universal:python3.11-avd-v4.5.0"
+    "image": "ghcr.io/aristanetworks/ansible-avd/universal:python3.11-avd-v4.5.0",
+    "remoteUser": "avd",
+    "postCreateCommand": "ansible-galaxy collection install community.general -p /home/avd/.ansible/collections/ansible_collections && ansible-galaxy collection install ansible.posix -p /home/avd/.ansible/collections/ansible_collections"
 }

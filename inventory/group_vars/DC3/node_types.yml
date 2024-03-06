@@ -1,0 +1,20 @@
+---
+# add custom node types
+
+node_type_keys:
+
+  - key: spine
+    type: spine
+    default_evpn_role: server
+    default_ptp_priority1: 20
+
+  - key: l3leaf
+    type: l3leaf
+    connected_endpoints: true
+    default_evpn_role: client
+    default_ptp_priority1: 30
+    mlag_support: true
+    network_services:
+      l2: true
+      l3: true
+    vtep: true

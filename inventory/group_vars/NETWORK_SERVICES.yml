@@ -1,0 +1,28 @@
+---
+tenants: 
+#############################################
+# Internal Corporate Shared Services Tenant #
+#############################################
+  - name: CORP
+    mac_vrf_vni_base: 10000 
+    vrfs: 
+      - name: CORP
+        vrf_vni: 5001
+        svis: 
+          - id: 101
+            name: CORP_Services_101
+            enabled: true
+            ip_address_virtual: 10.101.101.1/24
+#################################
+# Public Facing Services Tenant #
+#################################
+  - name: PUBLIC
+    mac_vrf_vni_base: 10000 
+    vrfs: 
+      - name: PUBLIC
+        vrf_vni: 5002
+        svis: 
+          - id: 201
+            name: PUBLIC_Services_201
+            enabled: true
+            ip_address_virtual: 10.201.201.1/24

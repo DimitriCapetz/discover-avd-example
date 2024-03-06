@@ -1,0 +1,18 @@
+---
+# Spine Switches
+
+type: spine
+
+spine: # dynamic_key: node_type
+  defaults:
+    platform: vEOS
+    bgp_as: 65300
+    loopback_ipv4_pool: 10.3.100.0/24
+
+  nodes:
+    - name: DC3-SPINE1
+      id: 1
+      mgmt_ip: 10.99.99.213/24
+    - name: DC3-SPINE2
+      id: 2
+      mgmt_ip: 10.99.99.214/24

@@ -1,0 +1,68 @@
+---
+# Leaf Switches
+
+type: l3leaf
+
+pod_name: POD1
+
+l3leaf: # dynamic_key: node_type
+  defaults:
+    platform: vEOS
+    loopback_ipv4_pool: 10.3.101.0/24
+    vtep_loopback_ipv4_pool: 10.3.102.0/24
+    mlag_peer_ipv4_pool: 10.3.255.0/24
+    mlag_peer_l3_ipv4_pool: 10.3.254.0/24
+    uplink_ipv4_pool: 10.3.0.0/22
+    uplink_switches: [DC3-SPINE1, DC3-SPINE2]
+    mlag_interfaces: [Ethernet55/1, Ethernet56/1]
+    uplink_interfaces: [Ethernet49/1, Ethernet50/1]
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 4096
+    virtual_router_mac_address : 00:1c:73:00:00:99
+  # mlag nodes
+  node_groups:
+    - group: leaf1-2
+      bgp_as: 65301
+      nodes:
+        - name: DC3-LEAF1
+          id: 13
+          mgmt_ip: 10.99.99.215/24
+          uplink_switch_interfaces:
+            - Ethernet1/1
+            - Ethernet1/1
+        - name: DC3-LEAF2
+          id: 14
+          mgmt_ip: 10.99.99.216/24
+          uplink_switch_interfaces:
+            - Ethernet2/1
+            - Ethernet2/1
+    - group: leaf3-4
+      bgp_as: 65302
+      nodes:
+        - name: DC3-LEAF3
+          id: 15
+          mgmt_ip: 10.99.99.217/24
+          uplink_switch_interfaces:
+            - Ethernet3/1
+            - Ethernet3/1
+        - name: DC3-LEAF4
+          id: 16
+          mgmt_ip: 10.99.99.218/24
+          uplink_switch_interfaces:
+            - Ethernet4/1
+            - Ethernet4/1
+    - group: pod-gateways
+      bgp_as: 65316
+      nodes:
+        - name: DC3-BORDER1
+          id: 11
+          mgmt_ip: 10.99.99.219/24
+          uplink_switch_interfaces:
+            - Ethernet7/1
+            - Ethernet7/1
+        - name: DC3-BORDER2
+          id: 12
+          mgmt_ip: 10.99.99.220/24
+          uplink_switch_interfaces:
+            - Ethernet8/1
+            - Ethernet8/1
