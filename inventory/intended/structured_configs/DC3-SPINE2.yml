@@ -44,16 +44,6 @@ router_bgp:
     remote_as: '65301'
     peer: DC3-LEAF2
     description: DC3-LEAF2_Ethernet50/1
-  - ip_address: 10.3.0.59
-    peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65302'
-    peer: DC3-LEAF3
-    description: DC3-LEAF3_Ethernet50/1
-  - ip_address: 10.3.0.63
-    peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65302'
-    peer: DC3-LEAF4
-    description: DC3-LEAF4_Ethernet50/1
   - ip_address: 10.3.0.43
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65316'
@@ -84,16 +74,6 @@ router_bgp:
     peer: DC3-LEAF2
     description: DC3-LEAF2
     remote_as: '65301'
-  - ip_address: 10.3.101.15
-    peer_group: EVPN-OVERLAY-PEERS
-    peer: DC3-LEAF3
-    description: DC3-LEAF3
-    remote_as: '65302'
-  - ip_address: 10.3.101.16
-    peer_group: EVPN-OVERLAY-PEERS
-    peer: DC3-LEAF4
-    description: DC3-LEAF4
-    remote_as: '65302'
   address_family_evpn:
     peer_groups:
     - name: EVPN-OVERLAY-PEERS
@@ -157,24 +137,6 @@ ethernet_interfaces:
   mtu: 1500
   type: routed
   ip_address: 10.3.0.54/31
-- name: Ethernet3/1
-  peer: DC3-LEAF3
-  peer_interface: Ethernet50/1
-  peer_type: l3leaf
-  description: P2P_LINK_TO_DC3-LEAF3_Ethernet50/1
-  shutdown: false
-  mtu: 1500
-  type: routed
-  ip_address: 10.3.0.58/31
-- name: Ethernet4/1
-  peer: DC3-LEAF4
-  peer_interface: Ethernet50/1
-  peer_type: l3leaf
-  description: P2P_LINK_TO_DC3-LEAF4_Ethernet50/1
-  shutdown: false
-  mtu: 1500
-  type: routed
-  ip_address: 10.3.0.62/31
 - name: Ethernet7/1
   peer: DC3-BORDER1
   peer_interface: Ethernet50/1

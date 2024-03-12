@@ -270,8 +270,6 @@ vlan internal order ascending range 1006 1199
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1/1 | P2P_LINK_TO_DC3-LEAF1_Ethernet49/1 | routed | - | 10.3.0.48/31 | default | 1500 | False | - | - |
 | Ethernet2/1 | P2P_LINK_TO_DC3-LEAF2_Ethernet49/1 | routed | - | 10.3.0.52/31 | default | 1500 | False | - | - |
-| Ethernet3/1 | P2P_LINK_TO_DC3-LEAF3_Ethernet49/1 | routed | - | 10.3.0.56/31 | default | 1500 | False | - | - |
-| Ethernet4/1 | P2P_LINK_TO_DC3-LEAF4_Ethernet49/1 | routed | - | 10.3.0.60/31 | default | 1500 | False | - | - |
 | Ethernet7/1 | P2P_LINK_TO_DC3-BORDER1_Ethernet49/1 | routed | - | 10.3.0.40/31 | default | 1500 | False | - | - |
 | Ethernet8/1 | P2P_LINK_TO_DC3-BORDER2_Ethernet49/1 | routed | - | 10.3.0.44/31 | default | 1500 | False | - | - |
 
@@ -292,20 +290,6 @@ interface Ethernet2/1
    mtu 1500
    no switchport
    ip address 10.3.0.52/31
-!
-interface Ethernet3/1
-   description P2P_LINK_TO_DC3-LEAF3_Ethernet49/1
-   no shutdown
-   mtu 1500
-   no switchport
-   ip address 10.3.0.56/31
-!
-interface Ethernet4/1
-   description P2P_LINK_TO_DC3-LEAF4_Ethernet49/1
-   no shutdown
-   mtu 1500
-   no switchport
-   ip address 10.3.0.60/31
 !
 interface Ethernet7/1
    description P2P_LINK_TO_DC3-BORDER1_Ethernet49/1
@@ -443,14 +427,10 @@ ip route vrf management 0.0.0.0/0 10.99.99.1
 | 10.3.0.45 | 65316 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - |
 | 10.3.0.49 | 65301 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - |
 | 10.3.0.53 | 65301 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - |
-| 10.3.0.57 | 65302 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - |
-| 10.3.0.61 | 65302 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - |
 | 10.3.101.11 | 65316 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - |
 | 10.3.101.12 | 65316 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - |
 | 10.3.101.13 | 65301 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - |
 | 10.3.101.14 | 65301 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - |
-| 10.3.101.15 | 65302 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - |
-| 10.3.101.16 | 65302 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -490,12 +470,6 @@ router bgp 65300
    neighbor 10.3.0.53 peer group IPv4-UNDERLAY-PEERS
    neighbor 10.3.0.53 remote-as 65301
    neighbor 10.3.0.53 description DC3-LEAF2_Ethernet49/1
-   neighbor 10.3.0.57 peer group IPv4-UNDERLAY-PEERS
-   neighbor 10.3.0.57 remote-as 65302
-   neighbor 10.3.0.57 description DC3-LEAF3_Ethernet49/1
-   neighbor 10.3.0.61 peer group IPv4-UNDERLAY-PEERS
-   neighbor 10.3.0.61 remote-as 65302
-   neighbor 10.3.0.61 description DC3-LEAF4_Ethernet49/1
    neighbor 10.3.101.11 peer group EVPN-OVERLAY-PEERS
    neighbor 10.3.101.11 remote-as 65316
    neighbor 10.3.101.11 description DC3-BORDER1
@@ -508,12 +482,6 @@ router bgp 65300
    neighbor 10.3.101.14 peer group EVPN-OVERLAY-PEERS
    neighbor 10.3.101.14 remote-as 65301
    neighbor 10.3.101.14 description DC3-LEAF2
-   neighbor 10.3.101.15 peer group EVPN-OVERLAY-PEERS
-   neighbor 10.3.101.15 remote-as 65302
-   neighbor 10.3.101.15 description DC3-LEAF3
-   neighbor 10.3.101.16 peer group EVPN-OVERLAY-PEERS
-   neighbor 10.3.101.16 remote-as 65302
-   neighbor 10.3.101.16 description DC3-LEAF4
    redistribute connected route-map RM-CONN-2-BGP
    !
    address-family evpn
