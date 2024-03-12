@@ -602,8 +602,6 @@ cvp_topology:
     devices:
     - DC3-LEAF1
     - DC3-LEAF2
-    - DC3-LEAF3
-    - DC3-LEAF4
     parent_container: DC3
   DC3_SPINES:
     devices:

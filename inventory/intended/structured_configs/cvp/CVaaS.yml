@@ -16,14 +16,6 @@ cvp_devices:
     parentContainerName: DC3_LEAFS
     configlets:
       - dcapetz - AVD_DC3-LEAF2
-  - fqdn: DC3-LEAF3
-    parentContainerName: DC3_LEAFS
-    configlets:
-      - dcapetz - AVD_DC3-LEAF3
-  - fqdn: DC3-LEAF4
-    parentContainerName: DC3_LEAFS
-    configlets:
-      - dcapetz - AVD_DC3-LEAF4
   - fqdn: DC3-SPINE1
     parentContainerName: DC3_SPINES
     configlets:

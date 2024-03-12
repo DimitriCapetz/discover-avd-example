@@ -22,10 +22,6 @@ all:
                       ansible_host: 10.99.99.215
                     DC3-LEAF2:
                       ansible_host: 10.99.99.216
-                    DC3-LEAF3:
-                      ansible_host: 10.99.99.217
-                    DC3-LEAF4:
-                      ansible_host: 10.99.99.218
                   children:
                     DC3_GATEWAYS:
                       hosts:
